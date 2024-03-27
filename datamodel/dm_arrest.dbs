@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ra_arrest_data" id="LogicalDesign-1ef5" database="LogicalDesign" >
+	<schema name="INSTANCE" catalogname="ra_arrest_data" >
+		<table name="date_dimension" prior="Entity" >
+			<column name="date_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="arrest_date" type="DATE" jt="91" />
+			<column name="day" type="INT" jt="4" />
+			<column name="month" type="INT" jt="4" />
+			<column name="quarter" prior="year" type="INT" jt="4" />
+			<column name="week" type="INT" jt="4" />
+			<column name="year" type="INT" jt="4" />
+			<index name="pk_date_dimension" unique="PRIMARY_KEY" >
+				<column name="date_key" />
+			</index>
+		</table>
+		<table name="facts_arrest" prior="Entity" >
+			<column name="arrest_key" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="location_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="date_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="perpetrator_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="law_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="offense_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="police_department_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="number_of_arrests" type="BIGINT" jt="-5" />
+			<column name="borough_arrest_count" type="BIGINT" jt="-5" />
+			<column name="age_group_count" type="BIGINT" jt="-5" />
+			<column name="offense_type_count" type="BIGINT" jt="-5" />
+			<index name="pk_facts_arrest" unique="PRIMARY_KEY" >
+				<column name="arrest_key" />
+				<column name="location_key" />
+				<column name="date_key" />
+				<column name="perpetrator_key" />
+				<column name="law_key" />
+				<column name="offense_key" />
+				<column name="police_department_key" />
+			</index>
+			<fk name="fk_facts_arrest_location_dimension" virtual="y" to_schema="ra_arrest_data.INSTANCE" to_table="location_dimension" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="location_key" pk="location_key" />
+			</fk>
+			<fk name="fk_facts_arrest_date_dimension" virtual="y" to_schema="ra_arrest_data.INSTANCE" to_table="date_dimension" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="date_key" pk="date_key" />
+			</fk>
+			<fk name="fk_facts_arrest_perpetrator_dimension" virtual="y" to_schema="ra_arrest_data.INSTANCE" to_table="perpetrator_dimension" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="perpetrator_key" pk="perpetrator_key" />
+			</fk>
+			<fk name="fk_facts_arrest_law_dimension" virtual="y" to_schema="ra_arrest_data.INSTANCE" to_table="law_dimension" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="law_key" pk="law_key" />
+			</fk>
+			<fk name="fk_facts_arrest_offense_dimension" virtual="y" to_schema="ra_arrest_data.INSTANCE" to_table="offense_dimension" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="offense_key" pk="offense_key" />
+			</fk>
+			<fk name="fk_facts_arrest_police_department_dimension" virtual="y" to_schema="ra_arrest_data.INSTANCE" to_table="police_department_dimension" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="police_department_key" pk="police_department_key" />
+			</fk>
+		</table>
+		<table name="law_dimension" prior="Entity" >
+			<column name="law_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="law_code" type="VARCHAR" jt="12" />
+			<column name="law_cat_cd" type="VARCHAR" jt="12" />
+			<index name="pk_law_dimension" unique="PRIMARY_KEY" >
+				<column name="law_key" />
+			</index>
+		</table>
+		<table name="location_dimension" prior="location_" >
+			<column name="location_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="arrest_boro" type="VARCHAR" jt="12" />
+			<column name="arrest_precinct" type="INT" jt="4" />
+			<column name="x_coord_cd" type="BIGINT" jt="-5" />
+			<column name="y_coord_cd" type="BIGINT" jt="-5" />
+			<column name="latitude" type="DECIMAL" jt="3" />
+			<column name="longitude" type="DECIMAL" jt="3" />
+			<index name="pk_location_dimension" unique="PRIMARY_KEY" >
+				<column name="location_key" />
+			</index>
+		</table>
+		<table name="offense_dimension" prior="Entity" >
+			<column name="offense_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="ky_cd" type="INT" jt="4" />
+			<column name="ofns_desc" type="VARCHAR" jt="12" />
+			<index name="pk_offense_dimension" unique="PRIMARY_KEY" >
+				<column name="offense_key" />
+			</index>
+		</table>
+		<table name="perpetrator_dimension" prior="Entity" >
+			<column name="perpetrator_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="age_group" type="VARCHAR" jt="12" />
+			<column name="perp_sex" type="CHAR" length="1" jt="1" />
+			<column name="perp_race" type="VARCHAR" jt="12" />
+			<index name="pk_perpetrator_dimension" unique="PRIMARY_KEY" >
+				<column name="perpetrator_key" />
+			</index>
+		</table>
+		<table name="police_department_dimension" prior="police_department_dime" >
+			<column name="police_department_key" type="VARCHAR" jt="12" mandatory="y" />
+			<column name="pd_cd" type="INT" jt="4" />
+			<column name="pd_desc" type="VARCHAR" jt="12" />
+			<column name="jurisdiction_code" type="INT" jt="4" />
+			<index name="pk_police_department_dimension" unique="PRIMARY_KEY" >
+				<column name="police_department_key" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-2434" show_relation="columns" >
+		<entity schema="ra_arrest_data.INSTANCE" name="date_dimension" color="C1D8EE" x="68" y="425" />
+		<entity schema="ra_arrest_data.INSTANCE" name="facts_arrest" color="C1D8EE" x="306" y="357" />
+		<entity schema="ra_arrest_data.INSTANCE" name="law_dimension" color="C1D8EE" x="561" y="272" />
+		<entity schema="ra_arrest_data.INSTANCE" name="location_dimension" color="C1D8EE" x="51" y="221" />
+		<entity schema="ra_arrest_data.INSTANCE" name="offense_dimension" color="C1D8EE" x="578" y="459" />
+		<entity schema="ra_arrest_data.INSTANCE" name="perpetrator_dimension" color="C1D8EE" x="289" y="187" />
+		<entity schema="ra_arrest_data.INSTANCE" name="police_department_dimension" color="C1D8EE" x="289" y="663" />
+		<callout x="85" y="51" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+	</layout>
+</project>
