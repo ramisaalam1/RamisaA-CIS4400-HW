@@ -21,10 +21,6 @@
 			<column name="law_key" type="VARCHAR" jt="12" mandatory="y" />
 			<column name="offense_key" type="VARCHAR" jt="12" mandatory="y" />
 			<column name="police_department_key" type="VARCHAR" jt="12" mandatory="y" />
-			<column name="number_of_arrests" type="BIGINT" jt="-5" />
-			<column name="borough_arrest_count" type="BIGINT" jt="-5" />
-			<column name="age_group_count" type="BIGINT" jt="-5" />
-			<column name="offense_type_count" type="BIGINT" jt="-5" />
 			<index name="pk_facts_arrest" unique="PRIMARY_KEY" >
 				<column name="arrest_key" />
 				<column name="location_key" />

@@ -18,10 +18,6 @@ CREATE  TABLE instance.facts_arrest (
 	law_key              VARCHAR    NOT NULL   ,
 	offense_key          VARCHAR    NOT NULL   ,
 	police_department_key VARCHAR    NOT NULL   ,
-	number_of_arrests    BIGINT       ,
-	borough_arrest_count BIGINT       ,
-	age_group_count      BIGINT       ,
-	offense_type_count   BIGINT       ,
 	CONSTRAINT pk_facts_arrest PRIMARY KEY ( arrest_key, location_key, date_key, perpetrator_key, law_key, offense_key, police_department_key )
  );
 
