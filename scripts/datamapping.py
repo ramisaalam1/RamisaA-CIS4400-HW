@@ -42,7 +42,19 @@ data_map = [
         'Source Column': 'law_cat_cd',
         'Destination Column': 'is_felony',
         'Data Type': 'boolean',
-        'Description': 'Tells us if the arrest was considered a felony or not.',
+        'Description': 'Tells us if the arrest is a felony or not.',
+    },
+    {
+        'Source Column': 'law_cat_cd',
+        'Destination Column': 'is_misdemeanor',
+        'Data Type': 'boolean',
+        'Description': 'Tells us if the arrest is a misdemeanor or not.',
+    },
+    {
+        'Source Column': 'law_cat_cd',
+        'Destination Column': 'is_violation',
+        'Data Type': 'boolean',
+        'Description': 'Tells us if the arrest is a violation or not.',
     },
     {
         'Source Column': 'arrest_boro',
@@ -56,12 +68,17 @@ data_map = [
         'Data Type': 'object',
         'Description': 'Categorical representation of age group. Derived from age_group.',
     },
+    {
+        'Source Column': 'arrest_count',  
+        'Destination Column': 'arrest_count',
+        'Data Type': 'integer',
+        'Description': 'shows a count of one arrest per row.',
+    },
 ]
 
 map_df = pd.DataFrame(data_map)
 
 excel_file_path = '/Users/ramisaalam/Desktop/NYPD_Arrest_YTD_DataDictionary.xlsx'
-
 excel = load_workbook(excel_file_path)
 
 with pd.ExcelWriter(excel_file_path, engine='openpyxl') as writer:
