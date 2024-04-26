@@ -39,7 +39,15 @@ df['longitude'] = pd.to_numeric(df['longitude'], errors='coerce')
 print(df.head())
 
 #Transformation - New Columns 
-df['is_felony'] = df['law_cat_cd'] == 'F'
+df['is_felony'] = (df['law_cat_cd'] == 'F')
+df['is_misdemeanor'] = (df['law_cat_cd'] == 'M')
+df['is_violation'] = (df['law_cat_cd'] == 'V')
+
+df['is_felony'] = df['is_felony'].astype(int)
+df['is_misdemeanor'] = df['is_misdemeanor'].astype(int)
+df['is_violation'] = df['is_violation'].astype(int)
+
+df['arrest_count'] = 1
 
 df['boro_precinct'] = df['arrest_boro'] + '_' + df['arrest_precinct'].astype(str)
 
