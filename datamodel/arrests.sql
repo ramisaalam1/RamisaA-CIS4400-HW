@@ -18,6 +18,10 @@ CREATE  TABLE instance.facts_arrest (
 	law_key              VARCHAR    NOT NULL   ,
 	offense_key          VARCHAR    NOT NULL   ,
 	police_department_key VARCHAR    NOT NULL   ,
+	is_felony            BOOLEAN       ,
+	is_misdemeanor       BOOLEAN       ,
+	is_violation         BOOLEAN       ,
+	arrest_count         INT       ,
 	CONSTRAINT pk_facts_arrest PRIMARY KEY ( arrest_key, location_key, date_key, perpetrator_key, law_key, offense_key, police_department_key )
  );
 
@@ -34,7 +38,8 @@ CREATE  TABLE instance.location_dimension (
 	x_coord_cd           BIGINT       ,
 	y_coord_cd           BIGINT       ,
 	latitude             DECIMAL       ,
-	longitude            DECIMAL       
+	longitude            DECIMAL       ,
+	boro_precinct        VARCHAR       
  );
 
 CREATE  TABLE instance.offense_dimension ( 
@@ -47,7 +52,8 @@ CREATE  TABLE instance.perpetrator_dimension (
 	perpetrator_key      VARCHAR    NOT NULL   PRIMARY KEY,
 	age_group            VARCHAR       ,
 	perp_sex             CHAR(1)       ,
-	perp_race            VARCHAR       
+	perp_race            VARCHAR       ,
+	age_category         VARCHAR       
  );
 
 CREATE  TABLE instance.police_department_dimension ( 
