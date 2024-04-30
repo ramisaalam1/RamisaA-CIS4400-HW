@@ -13,7 +13,7 @@ Setting up a data warehouse for arrest data can help keep track of all the arres
 The police department, policymakers, and law enforcement agencies will all be interested in this dataset. These individuals can use this data to make better strategic decisions and implement new rules to lower arrest rates.
 
 # Data 
-I used the ETL process. I first extracted the data from the API and stored it in a GCS bucket. I then read the data from the storage bucket and made it into a pandas data frame. I then transformed the data by adding new columns, dropping values, and more to make it easier to work with. Lastly, I loaded the data back into storage. 
+I used the ETL process. I first extracted the data from the API and stored it in a GCS bucket. I then read the data from the storage bucket and made it into a pandas data frame. I then transformed the data by adding new columns, dropping values, and more to make it easier to work with. Lastly, I loaded the data back into storage and created different visuals in Tableau. 
 
 ## Metadata
 Information about the columns and their description are stored in the data dictionary and can be found in the docs folder. 
