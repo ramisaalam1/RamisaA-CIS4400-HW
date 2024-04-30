@@ -10,7 +10,7 @@ Since this dataset holds important information about arrests that are made every
 Setting up a data warehouse for arrest data can help keep track of all the arrests both past and present. Integrating a data warehouse can help manage the data better and allow for easier access however it can be costly and time-consuming to maintain. 
 
 ## Business Persona
-The police department, policymakers, and law enforcement agencies will all be interested in this dataset. These individuals can use this data to get a better understanding of past arrests and current arrests. It will help them make better strategic decisions and implement new rules to lower arrest rates.
+The police department, policymakers, and law enforcement agencies will all be interested in this dataset. These individuals can use this data to make better strategic decisions and implement new rules to lower arrest rates.
 
 # Data 
 I used the ETL process. I first extracted the data from the API, I read the data into a pandas file and transformed it to make it easier to work with. Lastly, I loaded the data back into storage. 
